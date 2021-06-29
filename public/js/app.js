@@ -2069,8 +2069,8 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var lightbox2__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! lightbox2 */ "./node_modules/lightbox2/dist/js/lightbox.js");
-/* harmony import */ var lightbox2__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(lightbox2__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var lightbox2__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lightbox2 */ "./node_modules/lightbox2/dist/js/lightbox.js");
+/* harmony import */ var lightbox2__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lightbox2__WEBPACK_IMPORTED_MODULE_0__);
 //
 //
 //
@@ -2316,7 +2316,7 @@ __webpack_require__.r(__webpack_exports__);
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! leaflet */ "./node_modules/leaflet/dist/leaflet-src.js");
 /* harmony import */ var leaflet__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(leaflet__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue2-leaflet */ "./node_modules/vue2-leaflet/dist/vue2-leaflet.es.js");
+/* harmony import */ var vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue2-leaflet */ "./node_modules/vue2-leaflet/dist/vue2-leaflet.es.js");
 //
 //
 //
@@ -2339,10 +2339,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    LMap: vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__["LMap"],
-    LTileLayer: vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__["LTileLayer"],
-    LMarker: vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__["LMarker"],
-    LTooltip: vue2_leaflet__WEBPACK_IMPORTED_MODULE_2__["LTooltip"]
+    LMap: vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__["LMap"],
+    LTileLayer: vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__["LTileLayer"],
+    LMarker: vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__["LMarker"],
+    LTooltip: vue2_leaflet__WEBPACK_IMPORTED_MODULE_1__["LTooltip"]
   },
   data: function data() {
     return {
@@ -84560,6 +84560,27 @@ document.addEventListener('DOMContentLoaded', function () {
       dictRemoveFile: 'Eliminar Imagen',
       headers: {
         'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+      },
+      init: function init() {
+        var _this = this;
+
+        var galeria = document.querySelectorAll('.galeria');
+
+        if (galeria.length > 0) {
+          galeria.forEach(function (imagen) {
+            var imagenPublicada = {};
+            imagenPublicada.size = 1;
+            imagenPublicada.name = imagen.value;
+            imagenPublicada.nombreServidor = imagen.value;
+
+            _this.options.addedfile.call(_this, imagenPublicada);
+
+            _this.options.thumbnail.call(_this, imagenPublicada, "/storage/".concat(imagenPublicada.name));
+
+            imagenPublicada.previewElement.classList.add('dz-success');
+            imagenPublicada.previewElement.classList.add('dz-complete');
+          });
+        }
       },
       success: function success(file, respuesta) {
         // console.log(respuesta);
